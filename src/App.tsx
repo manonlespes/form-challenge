@@ -1,8 +1,22 @@
+import { useState } from 'react';
 import './App.css';
 import { Label } from './components/Label';
+import { PasswordMessage } from './components/PasswordMessage';
 import { SimpleInput } from './components/SimpleInput';
+import { PasswordValidationType } from './types/form';
+
+export const defaultPasswordValidation: PasswordValidationType = {
+  isCharLength: false,
+  isCharSpecial: false,
+  isDigit: false,
+  isLowerCase: false,
+  isUppercase: false,
+};
 
 export const App: React.FC = () => {
+  const [passwordStrength, setPasswordStrength] =
+    useState<PasswordValidationType>(defaultPasswordValidation);
+
   const signIn = () => {
     //do something here
   };
@@ -41,9 +55,15 @@ export const App: React.FC = () => {
                   type="password"
                   placeholder="Enter a secured password"
                   handleChange={handleChangePassword}
+                  errorName="passwordError"
                   required
                 />
               </Label>
+
+              <PasswordMessage
+                errorName="passwordError"
+                password={passwordStrength}
+              />
             </div>
 
             <button className="focus:ring-blue-[#3d59a2] w-full rounded-md bg-gray-500 p-2 text-sm text-white shadow-md ring-offset-2 transition-all ease-in hover:bg-gray-600 focus:outline-none focus:ring active:bg-gray-700 disabled:border-blue-200 disabled:bg-blue-200 disabled:text-slate-800 disabled:shadow-none">
