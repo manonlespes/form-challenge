@@ -5,6 +5,7 @@ import { PasswordMessage } from './components/PasswordMessage';
 import { SimpleInput } from './components/SimpleInput';
 import { PasswordValidationType } from './types/form';
 import { PasswordStrength } from './components/PasswordStrengthProgress';
+//import { CheckboxInput } from './components/CheckboxInput';
 
 export const defaultPasswordValidation: PasswordValidationType = {
   isCharLength: false,
@@ -18,6 +19,7 @@ export const App: React.FC = () => {
   const [passwordStrength, setPasswordStrength] =
     useState<PasswordValidationType>(defaultPasswordValidation);
   const [isValid, setIsValid] = useState(false);
+  //const [isChecked, setIsChecked] = useState(false);
 
   const signIn = (formData: FormData) => {
     const email = formData.get('email');
@@ -27,6 +29,9 @@ export const App: React.FC = () => {
       //TODO remove console.log
       console.log('sign in', email, password);
     }
+
+    // TODO fix error into action
+    //e.preventDefault();
   };
 
   const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
@@ -47,6 +52,12 @@ export const App: React.FC = () => {
     setIsValid(Object.values(validations).every(Boolean));
   };
 
+  /*   const handleChangeCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.checked;
+
+    console.log(value);
+  }; */
+
   return (
     <main>
       <h1 className="my-6 p-6 text-center text-xl font-bold sm:text-2xl md:text-4xl">
@@ -56,7 +67,7 @@ export const App: React.FC = () => {
       <section className="m-auto block w-full px-5 sm:max-w-[50rem]">
         <div className="m-auto block w-full rounded-lg bg-white p-6 shadow-md sm:max-w-96">
           <form action={signIn} className="flex flex-col gap-5">
-            <Label htmlFor="email">
+            <Label htmlFor="email" moreClassname="flex-col">
               Email (ex: jane@doe.de)
               <SimpleInput
                 id="email"
@@ -69,7 +80,7 @@ export const App: React.FC = () => {
             </Label>
 
             <div className="flex flex-col gap-3">
-              <Label htmlFor="password">
+              <Label htmlFor="password" moreClassname="flex-col">
                 Password
                 <SimpleInput
                   id="password"
@@ -89,6 +100,16 @@ export const App: React.FC = () => {
                 password={passwordStrength}
               />
             </div>
+
+            {/*             <Label htmlFor="acceptTerm" moreClassname="items-center">
+              <CheckboxInput
+                id="acceptTerm"
+                name="acceptTerm"
+                checked={isChecked}
+                handleChange={handleChangeCheckbox}
+              />
+              Accept terms of services
+            </Label> */}
 
             <button
               className="focus:ring-blue-[#3d59a2] text-bolder w-full rounded-md bg-gray-500 p-2 text-sm text-white shadow-md ring-offset-2 transition-all ease-in hover:bg-gray-600 focus:bg-gray-600 focus:outline-none focus:ring active:bg-gray-700 disabled:border-blue-200 disabled:bg-blue-200 disabled:text-black disabled:shadow-none"
