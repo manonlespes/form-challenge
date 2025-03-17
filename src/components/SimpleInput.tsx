@@ -8,6 +8,7 @@ export const SimpleInput = (props: SimpleInputType) => {
     autocomplete = 'off',
     placeholder,
     required,
+    errorName,
     handleChange,
   } = props;
   return (
@@ -20,6 +21,7 @@ export const SimpleInput = (props: SimpleInputType) => {
         autoComplete={autocomplete}
         placeholder={placeholder}
         required={required}
+        aria-describedby={errorName}
         onChange={handleChange}
       />
     </>
