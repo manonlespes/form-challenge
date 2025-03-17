@@ -14,6 +14,7 @@ export type SimpleInputType = {
 export type LabelType = {
   htmlFor: string;
   children: ReactNode;
+  moreClassname?: string;
 };
 
 export type PasswordValidationType = {
