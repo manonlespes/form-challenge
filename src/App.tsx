@@ -4,6 +4,7 @@ import { Label } from './components/Label';
 import { PasswordMessage } from './components/PasswordMessage';
 import { SimpleInput } from './components/SimpleInput';
 import { PasswordValidationType } from './types/form';
+import { PasswordStrength } from './components/PasswordStrengthProgress';
 
 export const defaultPasswordValidation: PasswordValidationType = {
   isCharLength: false,
@@ -80,6 +81,8 @@ export const App: React.FC = () => {
                   required
                 />
               </Label>
+
+              <PasswordStrength password={passwordStrength} />
 
               <PasswordMessage
                 errorName="passwordError"
